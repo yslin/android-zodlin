@@ -1,5 +1,8 @@
 package com.example.zodlin.actionbar;
 
+import android.app.SearchManager;
+import android.app.SearchableInfo;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
@@ -12,6 +15,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.util.List;
 
 /**
  * This sample shows you how to use ActionBarCompat with a customized theme. It utilizes a split
@@ -80,6 +85,39 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
 //            }
 //        });
         // 配置SearchView的属性
+        setupSearchView(searchItem);
+
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    protected boolean isAlwaysExpanded() {
+        return false;
+    }
+
+    private void setupSearchView(MenuItem searchItem) {
+        if (isAlwaysExpanded()) {
+            mSearchView.setIconifiedByDefault(false);
+        } else {
+            searchItem.setShowAsActionFlags(MenuItem.SHOW_AS_ACTION_IF_ROOM
+                    | MenuItem.SHOW_AS_ACTION_COLLAPSE_ACTION_VIEW);
+        }
+
+        // Show application matching search text
+        SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+        if (searchManager != null) {
+            List<SearchableInfo> searchables = searchManager
+                    .getSearchablesInGlobalSearch();
+
+            SearchableInfo info = searchManager
+                    .getSearchableInfo(getComponentName());
+            for (SearchableInfo inf : searchables) {
+                if (inf.getSuggestAuthority() != null
+                        && inf.getSuggestAuthority().startsWith("applications")) {
+                    info = inf;
+                }
+            }
+            mSearchView.setSearchableInfo(info);
+        }
         mSearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener(){
             @Override
             public boolean onQueryTextSubmit(String query) {
@@ -93,8 +131,6 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
                 return false;
             }
         });
-
-        return super.onCreateOptionsMenu(menu);
     }
 
     @Override
