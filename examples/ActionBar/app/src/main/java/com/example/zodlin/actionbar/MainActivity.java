@@ -1,14 +1,12 @@
 package com.example.zodlin.actionbar;
 
+import android.app.ActionBar;
+import android.app.Activity;
 import android.app.SearchManager;
 import android.app.SearchableInfo;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v4.view.MenuItemCompat;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
 import android.util.Log;
 import android.view.Menu;
@@ -22,7 +20,7 @@ import java.util.List;
  * This sample shows you how to use ActionBarCompat with a customized theme. It utilizes a split
  * action bar when running on a device with a narrow display, and show three tabs.
  *
- * This Activity extends from {@link ActionBarActivity}, which provides all of the function
+ * This Activity extends from ActionBarActivity, which provides all of the function
  * necessary to display a compatible Action Bar on devices running Android v2.1+.
  *
  * The interesting bits of this sample start in the theme files
@@ -31,7 +29,7 @@ import java.util.List;
  * Many of the drawables used in this sample were generated with the
  * 'Android Action Bar Style Generator': http://jgilfelt.github.io/android-actionbarstylegenerator
  */
-public class MainActivity extends AppCompatActivity implements ActionBar.TabListener {
+public class MainActivity extends Activity {
     private static final String TAG = "MainActivity";
     private TextView mMainDescription;
     private SearchView mSearchView;
@@ -43,25 +41,24 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
         mMainDescription = (TextView) findViewById(R.id.main_description);
 
         // Set the Action Bar to use tabs for navigation
-        ActionBar actionBar = getSupportActionBar();
+        ActionBar actionBar = getActionBar();
 //        actionBar.hide();
 
         // Home is presented as either an activity icon or logo
         actionBar.setDisplayShowHomeEnabled(true);
+//        actionBar.setDisplayShowTitleEnabled(false);
+
         actionBar.setIcon(android.R.drawable.btn_star_big_on);
 //        actionBar.setTitle(R.string.app_name);
 
         // Navigating up with the app icon, main activity usually won't show this.
-        actionBar.setDisplayHomeAsUpEnabled(false);
+        actionBar.setDisplayHomeAsUpEnabled(true);
 
         // Add three tabs to the Action Bar for display
 //        actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 //        actionBar.addTab(actionBar.newTab().setText("Tab 1").setTabListener(this));
 //        actionBar.addTab(actionBar.newTab().setText("Tab 2").setTabListener(this));
 //        actionBar.addTab(actionBar.newTab().setText("Tab 3").setTabListener(this));
-
-//        actionBar.setDisplayShowHomeEnabled(false);
-//        actionBar.setDisplayShowTitleEnabled(false);
     }
 
     @Override
@@ -70,6 +67,7 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
         getMenuInflater().inflate(R.menu.main, menu);
         MenuItem searchItem = menu.findItem(R.id.menu_search);
         mSearchView = (SearchView) searchItem.getActionView();
+        Log.d(TAG, "mSearchView:" + mSearchView);
 //        MenuItemCompat.setActionView(searchItem, mSearchView);
 //        MenuItemCompat.setOnActionExpandListener(searchItem, new MenuItemCompat.OnActionExpandListener() {
 //            @Override
@@ -85,7 +83,7 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
 //            }
 //        });
         // 配置SearchView的属性
-        setupSearchView(searchItem);
+//        setupSearchView(searchItem);
 
         return super.onCreateOptionsMenu(menu);
     }
@@ -156,22 +154,22 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
                 return super.onOptionsItemSelected(item);
         }
     }
-
-    // Implemented from ActionBar.TabListener
-    @Override
-    public void onTabSelected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {
-        // This is called when a tab is selected.
-    }
-
-    // Implemented from ActionBar.TabListener
-    @Override
-    public void onTabUnselected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {
-        // This is called when a previously selected tab is unselected.
-    }
-
-    // Implemented from ActionBar.TabListener
-    @Override
-    public void onTabReselected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {
-        // This is called when a previously selected tab is selected again.
-    }
+//
+//    // Implemented from ActionBar.TabListener
+//    @Override
+//    public void onTabSelected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {
+//        // This is called when a tab is selected.
+//    }
+//
+//    // Implemented from ActionBar.TabListener
+//    @Override
+//    public void onTabUnselected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {
+//        // This is called when a previously selected tab is unselected.
+//    }
+//
+//    // Implemented from ActionBar.TabListener
+//    @Override
+//    public void onTabReselected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {
+//        // This is called when a previously selected tab is selected again.
+//    }
 }

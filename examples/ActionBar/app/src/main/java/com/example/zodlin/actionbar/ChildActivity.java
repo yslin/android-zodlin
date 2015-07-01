@@ -1,19 +1,17 @@
 package com.example.zodlin.actionbar;
 
+import android.app.ActionBar;
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v4.app.NavUtils;
 import android.support.v4.app.TaskStackBuilder;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.ActionBarActivity;
-import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class ChildActivity extends ActionBarActivity {
+public class ChildActivity extends Activity {
     private TextView mMainDescription;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,7 +20,7 @@ public class ChildActivity extends ActionBarActivity {
         mMainDescription = (TextView) findViewById(R.id.main_description);
         mMainDescription.setText("Child Activity");
         // Set the Action Bar to use tabs for navigation
-        ActionBar actionBar = getSupportActionBar();
+        ActionBar actionBar = getActionBar();
 //        actionBar.hide();
 
         // Home is presented as either an activity icon or logo
