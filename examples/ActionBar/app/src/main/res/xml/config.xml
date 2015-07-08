@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+    <!-- android:entries 設定畫面顯示選項內容的陣列資源 -->
+    <!-- android:entriyValues 設定儲存選項資料的陣列資源 -->
+    <!-- android:defaultValue 設定選項預設項目編號 -->
+    <ListPreference
+        android:key="@string/config_navigation_key"
+        android:title="@string/config_navigation_mode"
+        android:summary="@string/config_navigation_mode_summary"
+        android:entries="@array/config_navigation_array"
+        android:entryValues="@array/config_navigation_value_array"
+        android:defaultValue="0" />
+</PreferenceScreen>
