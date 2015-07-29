@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<preference-headers xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <header android:title="Game Options" />
+    <header
+        android:id="@+id/multi_settings"
+        android:fragment="fr.xgouchet.tuto.switchpreferences.MultiplayerPreferencesFragment"
+        android:icon="@drawable/ic_menu_allfriends"
+        android:title="Multiplayer" />
+    <header
+        android:id="@+id/game_mode_settings"
+        android:fragment="fr.xgouchet.tuto.switchpreferences.GameModePreferencesFragment"
+        android:icon="@drawable/ic_menu_manage"
+        android:title="Game Mode" />
+    <header android:title="Technical Options" />
+    <header
+        android:id="@+id/sounds_settings"
+        android:fragment="fr.xgouchet.tuto.switchpreferences.SoundsPreferencesFragment"
+        android:icon="@drawable/ic_lock_ringer_on"
+        android:title="Sounds" />
+    <header
+        android:id="@+id/display_settings"
+        android:fragment="fr.xgouchet.tuto.switchpreferences.DisplayPreferencesFragment"
+        android:icon="@drawable/ic_menu_view"
+        android:title="Display" />
+
+</preference-headers>
